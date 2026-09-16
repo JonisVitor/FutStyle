@@ -10,6 +10,7 @@
 - Ordenação por relevância, preço e nome.
 - Cards de produto com ilustração SVG de camisa, detalhes, favoritos e carrinho.
 - Menu mobile, foco visível, `prefers-reduced-motion` e estado sem resultados.
+- Modelo de dados documentado em `DATA-MODEL.md`, com entidades, relações e regras de integridade.
 
 ## Validação
 
@@ -21,12 +22,11 @@
 
 ## Itens ainda abertos
 
-- Estrutura e desenvolvimento de banco de dados.
-- Sistema de cadastro de usuários.
+- Desenvolvimento do banco de dados a partir do modelo definido.
+- Sistema de cadastro de usuários com autenticação real.
 - Definição de requisitos para backend e autenticação.
 - Item externo do Backlog com link da App Store, sem contexto de implementação.
 
 ## Referência
 
 Commit principal das entregas visuais: `875b539`.
-
