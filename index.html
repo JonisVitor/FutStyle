@@ -3,14 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0d0f" />
   <title>FutStyle | Camisas de Futebol</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="topbar">
-    <a href="#" class="logo">FutStyle</a>
+    <a href="#inicio" class="logo" aria-label="FutStyle início">
+      <span class="logo-mark" aria-hidden="true">F</span>
+      <span>FutStyle</span>
+    </a>
 
-    <nav class="menu">
+    <nav class="menu" id="menuPrincipal" aria-label="Navegação principal">
       <a href="#inicio">Início</a>
       <a href="#catalogo">Camisas</a>
       <a href="#ligas">Ligas</a>
@@ -18,168 +22,137 @@
     </nav>
 
     <div class="acoes-topo">
-      <button id="btnFavoritos" class="icone-btn" aria-label="Favoritos">♡ <span id="qtdFavoritos">0</span></button>
-      <button id="btnCarrinho" class="icone-btn" aria-label="Carrinho">🛒 <span id="qtdCarrinho">0</span></button>
+      <button id="btnFavoritos" class="icone-btn" aria-label="Abrir favoritos">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20.8 8.8c0 5.1-8.8 10-8.8 10s-8.8-4.9-8.8-10A4.8 4.8 0 0 1 12 6.2a4.8 4.8 0 0 1 8.8 2.6Z" /></svg>
+        <span id="qtdFavoritos">0</span>
+      </button>
+      <button id="btnCarrinho" class="icone-btn" aria-label="Abrir carrinho">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 4h2l2.1 10.1a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L20 7H6" /><circle cx="9" cy="19" r="1.2" /><circle cx="17" cy="19" r="1.2" /></svg>
+        <span id="qtdCarrinho">0</span>
+      </button>
+      <button id="btnMenu" class="menu-btn" aria-label="Abrir menu" aria-expanded="false">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+      </button>
     </div>
   </header>
 
   <main>
     <section class="hero" id="inicio">
       <div class="hero-conteudo">
-        <span class="eyebrow">FUTEBOL É ESTILO</span>
-        <h1>Vista sua paixão.</h1>
-        <p>Camisas de clubes do Brasil e do mundo em uma loja simples, rápida e preparada para crescer.</p>
-        <a class="btn btn-principal" href="#catalogo">Ver catálogo</a>
-      </div>
-    </section>
-
-    <section class="beneficios">
-      <div>
-        <strong>Catálogo completo</strong>
-        <span>Clubes nacionais e internacionais</span>
-      </div>
-      <div>
-        <strong>Filtros rápidos</strong>
-        <span>Time, liga, cor, ano e preço</span>
-      </div>
-      <div>
-        <strong>Preparado para backend</strong>
-        <span>Estrutura pronta para estoque e usuários</span>
-      </div>
-    </section>
-
-    <section class="secao" id="ligas">
-      <div class="cabecalho-secao">
-        <div>
-          <span class="eyebrow">NAVEGUE POR LIGA</span>
-          <h2>Principais campeonatos</h2>
+        <p class="hero-season">COLEÇÃO 2026 <span></span> FUTSTYLE</p>
+        <h1>Vista o jogo.<br /><em>Viva a camisa.</em></h1>
+        <p class="hero-texto">Camisas que carregam história, rivalidade e identidade. Encontre a sua próxima peça entre clubes do Brasil e do mundo.</p>
+        <div class="hero-acoes">
+          <a class="btn btn-principal" href="#catalogo">Explorar coleção <span aria-hidden="true">↗</span></a>
+          <a class="hero-link" href="#ligas">Ver por liga <span aria-hidden="true">↓</span></a>
         </div>
       </div>
 
+      <div class="hero-visual" aria-label="Camisa FutStyle em destaque">
+        <div class="visual-topline"><span>FS / 026</span><span>JERSEY CULTURE</span></div>
+        <div class="hero-camisa-wrap">
+          <div class="hero-orbit hero-orbit-1"></div>
+          <div class="hero-orbit hero-orbit-2"></div>
+          <div class="camisa-arte camisa-arte-hero" data-cor="Lima">
+            <svg viewBox="0 0 260 300" role="img" aria-label="Camisa FutStyle estilizada">
+              <path class="camisa-corpo" d="M72 44 23 75l25 48 25-14v130h114V109l25 14 25-48-49-31-25 35H97L72 44Z" />
+              <path class="camisa-gola" d="M98 43c4 22 60 22 64 0" />
+              <path class="camisa-linha" d="M73 111h40m34 0h40M73 224h114" />
+              <text class="camisa-numero" x="130" y="177" text-anchor="middle">F</text>
+            </svg>
+          </div>
+        </div>
+        <div class="visual-bottomline"><span>FUT / STYLE</span><strong>01 — 04</strong></div>
+      </div>
+    </section>
+
+    <section class="beneficios" aria-label="Por que comprar na FutStyle">
+      <div><span class="beneficio-numero">01</span><strong>Curadoria de clubes</strong><span>Brasil, Europa e camisas retrô.</span></div>
+      <div><span class="beneficio-numero">02</span><strong>Encontre sem esforço</strong><span>Filtros rápidos por time, liga e temporada.</span></div>
+      <div><span class="beneficio-numero">03</span><strong>Escolha a sua próxima</strong><span>Detalhes, tamanhos e favoritos em um só lugar.</span></div>
+    </section>
+
+    <section class="secao ligas-secao" id="ligas">
+      <div class="cabecalho-secao">
+        <div>
+          <p class="section-label">01 / COMPETIÇÕES</p>
+          <h2>O mundo do futebol<br /><em>em uma vitrine.</em></h2>
+        </div>
+        <p class="section-intro">Escolha um caminho e encontre camisas que falam a mesma língua que você.</p>
+      </div>
       <div id="listaLigas" class="lista-ligas"></div>
     </section>
 
     <section class="secao secao-catalogo" id="catalogo">
-      <div class="cabecalho-secao">
+      <div class="cabecalho-secao cabecalho-catalogo">
         <div>
-          <span class="eyebrow">LOJA FUTSTYLE</span>
-          <h2>Catálogo de camisas</h2>
+          <p class="section-label">02 / CATÁLOGO</p>
+          <h2>Escolha sua camisa.</h2>
         </div>
         <p id="resultadoInfo" class="resultado-info"></p>
       </div>
 
       <div class="catalogo-layout">
-        <aside class="filtros">
-          <h3>Filtros</h3>
+        <aside class="filtros" aria-label="Filtros do catálogo">
+          <div class="filtros-topo"><h3>Refine a busca</h3><span>F / 026</span></div>
 
-          <label>
-            Buscar
-            <input id="filtroBusca" type="search" placeholder="Ex.: Real Madrid" />
-          </label>
+          <label>Buscar<input id="filtroBusca" type="search" placeholder="Time ou camisa" /></label>
 
-          <label>
-            Liga
-            <select id="filtroLiga">
-              <option value="">Todas</option>
-            </select>
-          </label>
+          <label>Liga<select id="filtroLiga"><option value="">Todas</option></select></label>
+          <label>Time<select id="filtroTime"><option value="">Todos</option></select></label>
+          <label>Cor<select id="filtroCor"><option value="">Todas</option></select></label>
+          <label>Ano<select id="filtroAno"><option value="">Todos</option></select></label>
 
-          <label>
-            Time
-            <select id="filtroTime">
-              <option value="">Todos</option>
-            </select>
-          </label>
-
-          <label>
-            Cor
-            <select id="filtroCor">
-              <option value="">Todas</option>
-            </select>
-          </label>
-
-          <label>
-            Ano
-            <select id="filtroAno">
-              <option value="">Todos</option>
-            </select>
-          </label>
-
-          <label>
-            Preço máximo
+          <label class="range-label">Preço máximo
             <input id="filtroPreco" type="range" min="80" max="250" step="10" value="250" />
             <span id="valorPreco">Até R$ 250,00</span>
           </label>
 
-          <label>
-            Ordenar
-            <select id="ordenacao">
-              <option value="relevancia">Mais relevantes</option>
-              <option value="menor-preco">Menor preço</option>
-              <option value="maior-preco">Maior preço</option>
-              <option value="nome">Nome A-Z</option>
-            </select>
-          </label>
+          <label>Ordenar<select id="ordenacao">
+            <option value="relevancia">Mais relevantes</option>
+            <option value="menor-preco">Menor preço</option>
+            <option value="maior-preco">Maior preço</option>
+            <option value="nome">Nome A-Z</option>
+          </select></label>
 
-          <button id="limparFiltros" class="btn btn-secundario">Limpar filtros</button>
+          <button id="limparFiltros" class="btn btn-secundario">Limpar filtros <span aria-hidden="true">↺</span></button>
         </aside>
 
-        <section>
+        <section aria-live="polite">
           <div id="listaProdutos" class="grade-produtos"></div>
-          <div id="semResultados" class="sem-resultados oculto">
-            Nenhuma camisa encontrada com esses filtros.
-          </div>
+          <div id="semResultados" class="sem-resultados oculto"><strong>Nenhuma camisa encontrada.</strong><span>Tente remover um filtro para ampliar a busca.</span></div>
         </section>
       </div>
     </section>
 
-    <section class="secao sobre" id="sobre">
-      <span class="eyebrow">SOBRE A FUTSTYLE</span>
-      <h2>Paixão, estilo e tecnologia</h2>
-      <p>
-        Projeto de loja de camisas esportivas com catálogo interativo, carrinho, favoritos,
-        filtros e uma estrutura simples para facilitar a futura integração com banco de dados,
-        cadastro de usuários e controle de estoque.
-      </p>
+    <section class="manifesto" id="sobre">
+      <div class="manifesto-mark" aria-hidden="true">FS</div>
+      <div>
+        <p class="section-label">03 / SOBRE A FUTSTYLE</p>
+        <h2>Mais que uma camisa.<br /><em>Uma forma de pertencer.</em></h2>
+        <p>Uma vitrine de camisas para quem reconhece o peso de uma cor, a memória de uma temporada e a energia de entrar em campo.</p>
+      </div>
     </section>
   </main>
 
   <div id="overlay" class="overlay"></div>
 
-  <aside id="painelCarrinho" class="painel-lateral">
-    <div class="painel-topo">
-      <h2>Carrinho</h2>
-      <button class="fechar-painel" data-fechar="carrinho">×</button>
-    </div>
+  <aside id="painelCarrinho" class="painel-lateral" aria-label="Carrinho" aria-hidden="true">
+    <div class="painel-topo"><div><span class="section-label">SUA SELEÇÃO</span><h2>Carrinho</h2></div><button class="fechar-painel" data-fechar="carrinho" aria-label="Fechar carrinho">×</button></div>
     <div id="itensCarrinho" class="itens-painel"></div>
-    <div class="painel-rodape">
-      <strong>Total: <span id="totalCarrinho">R$ 0,00</span></strong>
-      <button class="btn btn-principal largura-total">Finalizar compra</button>
-    </div>
+    <div class="painel-rodape"><strong>Total <span id="totalCarrinho">R$ 0,00</span></strong><button class="btn btn-principal largura-total">Finalizar compra <span aria-hidden="true">↗</span></button></div>
   </aside>
 
-  <aside id="painelFavoritos" class="painel-lateral">
-    <div class="painel-topo">
-      <h2>Favoritos</h2>
-      <button class="fechar-painel" data-fechar="favoritos">×</button>
-    </div>
+  <aside id="painelFavoritos" class="painel-lateral" aria-label="Favoritos" aria-hidden="true">
+    <div class="painel-topo"><div><span class="section-label">GUARDADAS PARA DEPOIS</span><h2>Favoritos</h2></div><button class="fechar-painel" data-fechar="favoritos" aria-label="Fechar favoritos">×</button></div>
     <div id="itensFavoritos" class="itens-painel"></div>
   </aside>
 
-  <div id="modalProduto" class="modal">
-    <div class="modal-conteudo">
-      <button id="fecharModal" class="modal-fechar">×</button>
-      <div id="conteudoModal"></div>
-    </div>
+  <div id="modalProduto" class="modal" role="dialog" aria-modal="true" aria-label="Detalhes do produto">
+    <div class="modal-conteudo"><button id="fecharModal" class="modal-fechar" aria-label="Fechar detalhes">×</button><div id="conteudoModal"></div></div>
   </div>
 
-  <footer class="rodape">
-    <div>
-      <strong class="logo">FutStyle</strong>
-      <p>Loja de camisas de futebol.</p>
-    </div>
-    <p>Projeto front-end demonstrativo.</p>
-  </footer>
+  <footer class="rodape"><div><strong class="logo"><span class="logo-mark" aria-hidden="true">F</span><span>FutStyle</span></strong><p>Camisas que carregam o jogo.</p></div><p>Projeto front-end demonstrativo · 2026</p></footer>
 
   <script src="script.js"></script>
 </body>

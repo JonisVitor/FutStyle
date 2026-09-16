@@ -64,6 +64,27 @@ function preencherSelect(id, valores) {
   });
 }
 
+function siglaTime(nome) {
+  const palavras = nome.split(/\s+/).filter(Boolean);
+  if (palavras.length > 1) return palavras.slice(0, 2).map(palavra => palavra[0]).join("").toUpperCase();
+  return nome.slice(0, 3).toUpperCase();
+}
+
+function camisaSVG(produto, aria = "") {
+  return `
+    <svg viewBox="0 0 260 300" role="img" aria-label="${aria || `Camisa ${produto.nome}`}" class="camisa-svg">
+      <path class="camisa-corpo" d="M72 44 23 75l25 48 25-14v130h114V109l25 14 25-48-49-31-25 35H97L72 44Z" />
+      <path class="camisa-gola" d="M98 43c4 22 60 22 64 0" />
+      <path class="camisa-linha" d="M73 111h40m34 0h40M73 224h114" />
+      <text class="camisa-numero" x="130" y="177" text-anchor="middle">${siglaTime(produto.time)}</text>
+    </svg>
+  `;
+}
+
+function coracaoSVG(ativo) {
+  return `<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20.8 8.8c0 5.1-8.8 10-8.8 10s-8.8-4.9-8.8-10A4.8 4.8 0 0 1 12 6.2a4.8 4.8 0 0 1 8.8 2.6Z" ${ativo ? 'fill="currentColor"' : ""} /></svg>`;
+}
+
 function iniciarFiltros() {
   preencherSelect("filtroLiga", valoresUnicos("liga"));
   preencherSelect("filtroTime", valoresUnicos("time"));
@@ -93,10 +114,10 @@ function renderProdutos(lista) {
     <article class="produto">
       <div class="produto-imagem">
         ${p.destaque ? '<span class="badge">DESTAQUE</span>' : ""}
-        <button class="favorito-card ${produtoFavorito(p.id) ? "ativo" : ""}" onclick="alternarFavorito(${p.id})">
-          ${produtoFavorito(p.id) ? "♥" : "♡"}
+        <button class="favorito-card ${produtoFavorito(p.id) ? "ativo" : ""}" onclick="alternarFavorito(${p.id})" aria-label="${produtoFavorito(p.id) ? "Remover dos favoritos" : "Adicionar aos favoritos"}">
+          ${coracaoSVG(produtoFavorito(p.id))}
         </button>
-        <span class="camisa-emoji">${p.icone}</span>
+        <div class="camisa-arte" data-cor="${p.cor}">${camisaSVG(p)}</div>
       </div>
 
       <div class="produto-info">
@@ -265,14 +286,19 @@ function abrirPainel(tipo) {
 
   el("painelCarrinho").classList.remove("aberto");
   el("painelFavoritos").classList.remove("aberto");
+  el("painelCarrinho").setAttribute("aria-hidden", "true");
+  el("painelFavoritos").setAttribute("aria-hidden", "true");
 
   painel.classList.add("aberto");
+  painel.setAttribute("aria-hidden", "false");
   el("overlay").classList.add("ativo");
 }
 
 function fecharPaineis() {
   el("painelCarrinho").classList.remove("aberto");
   el("painelFavoritos").classList.remove("aberto");
+  el("painelCarrinho").setAttribute("aria-hidden", "true");
+  el("painelFavoritos").setAttribute("aria-hidden", "true");
   el("overlay").classList.remove("ativo");
 }
 
@@ -281,7 +307,7 @@ function abrirProduto(id) {
 
   el("conteudoModal").innerHTML = `
     <div class="modal-produto">
-      <div class="modal-imagem">${p.icone}</div>
+      <div class="modal-imagem"><div class="camisa-arte" data-cor="${p.cor}">${camisaSVG(p)}</div></div>
       <div>
         <span class="eyebrow">${p.liga}</span>
         <h2>${p.nome}</h2>
@@ -333,6 +359,26 @@ document.querySelectorAll(".fechar-painel").forEach(btn => {
 el("fecharModal").addEventListener("click", fecharModalProduto);
 el("modalProduto").addEventListener("click", e => {
   if (e.target === el("modalProduto")) fecharModalProduto();
+});
+
+el("btnMenu").addEventListener("click", () => {
+  const aberto = el("menuPrincipal").classList.toggle("aberto");
+  el("btnMenu").setAttribute("aria-expanded", String(aberto));
+  el("btnMenu").setAttribute("aria-label", aberto ? "Fechar menu" : "Abrir menu");
+});
+
+document.querySelectorAll("#menuPrincipal a").forEach(link => {
+  link.addEventListener("click", () => {
+    el("menuPrincipal").classList.remove("aberto");
+    el("btnMenu").setAttribute("aria-expanded", "false");
+    el("btnMenu").setAttribute("aria-label", "Abrir menu");
+  });
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key !== "Escape") return;
+  fecharPaineis();
+  fecharModalProduto();
 });
 
 iniciarFiltros();
