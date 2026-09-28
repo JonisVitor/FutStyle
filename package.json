@@ -1,0 +1,19 @@
+{
+  "name": "futstyle",
+  "version": "1.0.0",
+  "description": "FutStyle - catálogo de camisas de futebol com Node, Express e PostgreSQL.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon --legacy-watch --watch src src/index.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.2.1",
+    "pg": "^8.23.0",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
